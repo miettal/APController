@@ -13,12 +13,12 @@ import time
 from util import *
 
 if __name__ == '__main__':
-  assoclist_eth1 = [ mac for mac in remotecommand(host, ["wl", "-i", "eth1", "assoclist"])[0].split('\n') if mac.strip() != ""]
-  assoclist_eth2 = [ mac for mac in remotecommand(host, ["wl", "-i", "eth2", "assoclist"])[0].split('\n') if mac.strip() != ""]
+  assoclist_eth1 = [ mac for mac in command(["wl", "-i", "eth1", "assoclist"])[0].split('\n') if mac.strip() != ""]
+  assoclist_eth2 = [ mac for mac in command(["wl", "-i", "eth2", "assoclist"])[0].split('\n') if mac.strip() != ""]
   
   while True :
-    new_assoclist_eth1 = [ mac for mac in remotecommand(host, ["wl", "-i", "eth1", "assoclist"])[0].split('\n') if mac.strip() != ""]
-    new_assoclist_eth2 = [ mac for mac in remotecommand(host, ["wl", "-i", "eth2", "assoclist"])[0].split('\n') if mac.strip() != ""]
+    new_assoclist_eth1 = [ mac for mac in command(["wl", "-i", "eth1", "assoclist"])[0].split('\n') if mac.strip() != ""]
+    new_assoclist_eth2 = [ mac for mac in command(["wl", "-i", "eth2", "assoclist"])[0].split('\n') if mac.strip() != ""]
 
     print "disassoc eth1(5GHz)"
     for disassoc_mac in set(assoclist_eth1) - set(new_assoclist_eth1) :
@@ -30,7 +30,7 @@ if __name__ == '__main__':
       print disassoc_mac
     print
 
-    print "sassoc eth1(5GHz)"
+    print "assoc eth1(5GHz)"
     for assoc_mac in set(new_assoclist_eth1) - set(assoclist_eth1) :
       print assoc_mac
     print
