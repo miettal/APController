@@ -26,7 +26,7 @@ if __name__ == '__main__':
         print "\t radio:{:3s}".format("on" if remotecommand(host, ["wl","-i","eth1","radio"])[0].strip() == "0x0000" else "off"),
         print "\t\t SSID:{:16s}".format(remotecommand(host, ["wl","-i","eth1","ssid"])[0].split()[-1][1:-1]),
         print "\t\t PSK:{:16s}".format(remotecommand(host, ["nvram", "get", "wl0_wpa_psk"])[0][:-1]),
-        print "\t\t Ch:{:3s}".format(remotecommand(host, ["wl", "-i", "eth1", "channel"])[0].split('\n')[1].split()[3]),
+        print "\t\t Ch:{:3s}".format(remotecommand(host, ["nvram", "get", "wl0_channel"])[0][:-1]),
         print "\t TXPWR:{:4s}".format(''.join(remotecommand(host, ["wl", "-i", "eth1", "txpwr1"])[0].split()[6:7])),
         print "\t assoc num:{:2d}".format(
             len([ mac for mac in remotecommand(host, ["wl", "-i", "eth1", "assoclist"])[0].split('\n') if mac.strip() != ""]))
@@ -35,7 +35,7 @@ if __name__ == '__main__':
         print "\t radio:{:3s}".format("on" if remotecommand(host, ["wl","-i","eth2","radio"])[0].strip() == "0x0000" else "off"),
         print "\t\t SSID:{:16s}".format(remotecommand(host, ["wl","-i","eth2","ssid"])[0].split()[-1][1:-1]),
         print "\t\t PSK:{:16s}".format(remotecommand(host, ["nvram", "get", "wl1_wpa_psk"])[0][:-1]),
-        print "\t\t Ch:{:3s}".format(remotecommand(host, ["wl", "-i", "eth2", "channel"])[0].split('\n')[1].split()[3]),
+        print "\t\t Ch:{:3s}".format(remotecommand(host, ["nvram", "get", "wl1_channel"])[0][:-1]),
         print "\t TXPWR:{:4s}".format(''.join(remotecommand(host, ["wl", "-i", "eth2", "txpwr1"])[0].split()[6:7])),
         print "\t assoc num:{:2d}".format(
             len([ mac for mac in remotecommand(host, ["wl", "-i", "eth2", "assoclist"])[0].split('\n') if mac.strip() != ""]))

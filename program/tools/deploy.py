@@ -31,8 +31,8 @@ if __name__ == '__main__':
       copy(host, localsrc, remotedst)
       localsrc = getpath("/openwrt/build_dir/target-arm_cortex-a9_musl-1.1.14_eabi/root-bcm53xx/lib/ld-musl-arm.so.1")
       copy(host, localsrc, remotedst)
-#      localsrc = getpath("/python/Python-2.7.1_build")
-#      copy(host, localsrc, remotedst)
+      localsrc = getpath("/python/Python-2.7.1_build")
+      copy(host, localsrc, remotedst)
 
       rc_startup = open(getpath("/program/misc/rc_startup")).read()
       remotecommand(host, ["nvram", "set", "rc_startup=\""+rc_startup+"\""])

@@ -14,13 +14,16 @@ if __name__ == '__main__':
   if len(sys.argv) != 4 :
     print "Usage: "+sys.argv[0]+" host dev ch"
     sys.exit(1)
-  
+
   host = sys.argv[1]
   dev = sys.argv[2]
   ch = sys.argv[3]
-  _, err, ret = remotecommand(host, ["wl", "-i", dev, "channel", ch])
-  if ret != 0 :
-    print err
-    print "available channels...",
-    out, _, _ = remotecommand(host, ["wl", "-i", dev, "channels"])
-    print out
+  if dev == "eth1" :
+    remotecommand(host, ["nvram", "set", "wl0_channel="+ch])
+  elif dev == "eth2" :
+    remotecommand(host, ["nvram", "set", "wl1_channel="+ch])
+  else :
+    print "invlid dev"
+    sys.exit(1)
+  remotecommand(host, ["nvram", "commit"])
+  remotecommand(host, ["stopservice nas; startservice nas"])
