@@ -14,13 +14,16 @@ import time
 if __name__ == '__main__':
   while True :
     try :
-      ret = ping("8.8.8.8")
+      ret = ping("203.178.156.1")
       if ret == 0 :
         print "on"
+        command(["stopservice", "nas"])
         command(["wl", "-i", "eth1", "radio", "on"])
         command(["wl", "-i", "eth2", "radio", "on"])
+        command(["startservice", "nas"])
       else :
         print "off"
+        command(["stopservice", "nas"])
         command(["wl", "-i", "eth1", "radio", "off"])
         command(["wl", "-i", "eth2", "radio", "off"])
     except :
