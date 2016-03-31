@@ -22,9 +22,12 @@ def command(cmd, inpt="") :
   ret = p.wait()
   return out, err, ret
 
+def isradioon(dev) :
+  return 1 if command(["wl","-i",dev,"radio"])[0].strip() == "0x0000" else 0
+
 def remotecommand(host, cmd, inpt="") :
   if type(cmd) is not list: cmd = [cmd]
-  return command(["ssh", "root@"+host] + cmd)
+  return command(["ssh", "-o", "ConnectTimeout=2", "root@"+host] + cmd)
 
 def gethostinfo(host) :
   out, err, ret = remotecommand(host, "hostname")
@@ -34,10 +37,5 @@ def ping(host) :
   out, err, ret = command(["ping", "-c", "1", "-W", "1", host])
   return ret
 
-def ping2(src_host, dst_host) :
-  out, err, ret = remotecommand(src_host, ["ping", "-c", "1", "-W", "1", dst_host])
-  return ret
-
 def copy(host, localsrc, remotedst) :
-  print ' '.join(["scp", "-r", localsrc, "root@"+host+":"+remotedst])
   out, err, ret = command(["scp", "-r", localsrc, "root@"+host+":"+remotedst])

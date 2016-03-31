@@ -20,8 +20,8 @@ if __name__ == '__main__':
 
       print host+"...",
 
-#      remotecommand(host, ["rm", "-rf", "/jffs/APController"])
-#      remotecommand(host, ["mkdir", "-p", "/jffs/APController"])
+      remotecommand(host, ["rm", "-rf", "/jffs/APController"])
+      remotecommand(host, ["mkdir", "-p", "/jffs/APController"])
 
       remotedst = "/jffs/APController/"
 

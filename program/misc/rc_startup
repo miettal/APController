@@ -1,1 +1,2 @@
 /jffs/APController/ld-musl-arm.so.1 /jffs/APController/Python-2.7.1_build/bin/python /jffs/APController/program/client/radio_on_off_daemon.py &
+/jffs/APController/ld-musl-arm.so.1 /jffs/APController/Python-2.7.1_build/bin/python /jffs/APController/program/client/gen_syslog_daemon.py &

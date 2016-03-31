@@ -3,7 +3,7 @@
 #
 # changePower.py
 #
-# Author:   Hiromasa Ihara (miettal)
+# Author:   Hiromasa Ihara (taisyo)
 # Created:  2016-03-07
 #
 import sys
@@ -20,4 +20,15 @@ if __name__ == '__main__':
   if not (0 <= power <= 1000) :
     print "available power... 0-1000mW",
     sys.exit(1)
-  _, err, ret = remotecommand(host, ["wl", "-i", dev, "txpwr", str(power)])
+
+  if dev == "eth1" :
+    remotecommand(host, ["nvram", "set", "wl0_txpwr="+str(power)])
+    remotecommand(host, ["nvram", "set", "wl0_txpwrusr=0"])
+  elif dev == "eth2" :
+    remotecommand(host, ["nvram", "set", "wl1_txpwr="+str(power)])
+    remotecommand(host, ["nvram", "set", "wl1_txpwrusr=0"])
+  else :
+    print "invlid dev"
+    sys.exit(1)
+  remotecommand(host, ["nvram", "commit"])
+  remotecommand(host, ["stopservice nas; startservice nas"])

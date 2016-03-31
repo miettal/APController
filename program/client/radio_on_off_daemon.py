@@ -17,15 +17,16 @@ if __name__ == '__main__':
       ret = ping("203.178.156.1")
       if ret == 0 :
         print "on"
-        command(["stopservice", "nas"])
-        command(["wl", "-i", "eth1", "radio", "on"])
-        command(["wl", "-i", "eth2", "radio", "on"])
-        command(["startservice", "nas"])
+        if isradioon("eth1") == 0 : #off
+          command(["wl", "-i", "eth1", "radio", "on"])
+        if isradioon("eth2") == 0 : #off
+          command(["wl", "-i", "eth2", "radio", "on"])
       else :
         print "off"
-        command(["stopservice", "nas"])
-        command(["wl", "-i", "eth1", "radio", "off"])
-        command(["wl", "-i", "eth2", "radio", "off"])
+        if isradioon("eth1") == 1 : #on
+          command(["wl", "-i", "eth1", "radio", "off"])
+        if isradioon("eth2") == 1 : #on
+          command(["wl", "-i", "eth2", "radio", "off"])
     except :
       print traceback.format_exc()
     time.sleep(10)

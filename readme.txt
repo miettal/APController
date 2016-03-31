@@ -15,9 +15,15 @@
 2. ... -> Wan Setup->Router Name->AP**
 3. ... -> Wan Setup->Hostname->AP**
 --NTP
+1. TopMenu->Setup->Basic Setup
+2 ... ->Time Settings->NTP Client->enable
+3 ... ->Time Settings->Time Zone->Asia/Tokyo
+4 ... ->Time Settings->Server IP/Name->ntp.nict.jp
 1. TODO
 --Syslog
-1. TODO
+1. TopMenu->Services->Services
+2. ... ->System Log->Syslogd->enable
+3. ... ->System Log->Remote Server->***
 --SSH有効化
 1. TopMenu->Services->Services
 2.  ... ->SSHd->Enable
